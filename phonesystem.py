@@ -199,10 +199,12 @@ class PhoneSystem:
       result = ReturnResult()
       dec = decoder.decode(data,asn1Spec=Rose(opcode))[0]
       Obj = dec.getComponent()
-      result.setComponentByName('opcode',52)
+      res = ResultSeq()
+      res.setComponentByPosition(0,univ.Integer(52))
+      res.setComponentByPosition(1,univ.Null())
       result.setComponentByName('invokeid',Obj.getComponentByName('invokeid'))
-      result.setComponentByName('args',univ.Null())
-      self.sendMess(soc,result)
+      result.setComponentByName('args',res)
+      self.sendMess(result)
     else:
      dec = decoder.decode(data,asn1Spec=Rose(opcode))[0]
      Obj = dec.getComponent()
