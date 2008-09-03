@@ -333,7 +333,7 @@ def writelog(callstate, des, call):
             ended = pgdb.TimestampFromTicks(time.time())
             cur = callstate.mydb.cursor();
             if direction == "Internal":
-              cur.execute(query, ("T",int(str(dest)),str(calling),str(called),started,answered,ended,username))
+              cur.execute(query, ("T",int(str(ext)),str(calling),str(called),started,answered,ended,username))
             elif direction == "Incomming":
               cur.execute( query, ("N",int(str(ext)),str(calling),str(called),started,answered,ended,username))
             elif direction == "Lost":
